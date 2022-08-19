@@ -1,0 +1,11 @@
+_target_: src.datamodules.ec_datamodule.EnhancedClassifierDatamodule
+
+data_dir: ${data_dir} # data_dir is specified in config.yaml
+dataset_name: "unlid/A"
+dataset_name_hallucination: "unlid/gen0025"
+train_val_test_split: [ 0.8, 0.1, 0.1 ]
+hallucination_percentage: 1.0
+batch_size: 8
+num_workers: 5
+pin_memory: True
+# model_path: "~/Repositories/pl0025.ckpt"

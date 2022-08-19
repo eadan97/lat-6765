@@ -1,0 +1,43 @@
+# @package _global_
+
+# to execute this experiment run:
+# python run.py experiment=example_simple.yaml
+
+defaults:
+  - override /trainer: sb3.yaml # choose trainer from 'configs/trainer/'
+  - override /model: resnet_model.yaml
+  - override /datamodule: ec_datamodule.yaml
+  - override /callbacks: default.yaml
+  - override /logger: wandb.yaml
+
+# all parameters below will be merged with parameters from default configurations set above
+# this allows you to overwrite only specified parameters
+
+seed: 12345
+
+trainer:
+  benchmark: True
+  precision: 16
+  gpus: 1
+  min_epochs: 1
+  max_epochs: 100
+
+model:
+  n_classes: 255
+  freeze_layers: False
+  lr: 0.0001
+
+callbacks:
+  upload_ckpts_as_artifact:
+    _target_: src.callbacks.wandb_callbacks.UploadCheckpointsAsArtifact
+    ckpt_dir: "checkpoints/"
+    upload_best_only: True
+
+datamodule:
+  batch_size: 16
+  train_val_test_split: [0.7, 0.15, 0.15]
+
+logger:
+  wandb:
+    group: "resnet"
+    tags: ["resnet", "unlid_green", "mushroom" , "70/15/15"]

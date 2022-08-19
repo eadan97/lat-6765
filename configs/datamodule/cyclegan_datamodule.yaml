@@ -1,0 +1,14 @@
+_target_: src.datamodules.cyclegan_datamodule.CycleGanDatamodule
+
+data_dir: ${data_dir} # data_dir is specified in config.yaml
+image_size: 256
+image_margin: 30
+dataset_name: "ldf"
+train_val_test_split: [ 0.8, 0.1, 0.1 ]
+dataset_percentage: 1.0
+batch_size: 1
+num_workers: 5
+pin_memory: True
+use_gpu: False
+serial_batches: False
+restricted: False

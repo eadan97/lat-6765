@@ -1,0 +1,18 @@
+_target_: src.models.cyclegan_model.CycleGanModel
+
+ndf: 64
+ngf: 64
+norm_layer: 'instance'
+use_dropout: False
+pool_size: 50
+gan_mode: 'least_square'
+lambda_identity: 0.5
+lambda_A: 10.0
+lambda_B: 10.0
+lambda_perception: 0
+soft_noisy_labels: True
+lr_g: 2e-4
+lr_d: 2e-4
+beta1: 0.5
+log_num_samples: 8
+use_spectral: False

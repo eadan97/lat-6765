@@ -1,0 +1,21 @@
+pytorch 
+torchvision 
+torchaudio 
+cudatoolkit=10.2 
+notebook
+pytorch-lightning
+scikit-learn
+numpy
+python-dotenv
+rich
+black
+matplotlib
+seaborn
+
+
+#-c pytorch#
+#-c conda-forge#
+
+
+# wandb torchmetrics torchmetrics[image] lightning-bolts hydra-core hydra-colorlog hydra-optuna-sweeper#
+

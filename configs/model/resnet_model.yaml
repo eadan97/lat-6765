@@ -1,0 +1,6 @@
+_target_: src.models.resnet_model.ResnetModel
+
+n_classes: 256
+freeze_layers: True
+lr: 0.001
+weight_decay: 0.0005

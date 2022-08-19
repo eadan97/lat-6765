@@ -1,0 +1,6 @@
+_target_: src.models.vgg16_model.Vgg16Model
+
+n_classes: 256
+freeze_layers: True
+lr: 0.001
+weight_decay: 0.0005

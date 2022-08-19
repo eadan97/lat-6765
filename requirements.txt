@@ -1,0 +1,39 @@
+# --------- pytorch --------- #
+# torch==1.9
+# torchvision==0.10
+# pytorch-lightning>=1.3.2
+torchmetrics
+torchmetrics[image]
+lightning-bolts
+
+# --------- hydra --------- #
+hydra-core
+hydra-colorlog
+hydra-optuna-sweeper
+# hydra-ax-sweeper==1.1.0
+# hydra-ray-launcher==0.1.2
+# hydra-submitit-launcher==1.1.0
+
+# --------- loggers --------- #
+wandb
+# neptune-client
+# mlflow
+# comet-ml
+# torch_tb_profiler
+
+# --------- linters --------- #
+# pre-commit
+# black
+# isort
+# flake8
+
+# --------- others --------- #
+# jupyterlab
+# python-dotenv
+# rich
+# pytest
+# sh
+# scikit-learn
+# seaborn
+# pudb
+# dvc

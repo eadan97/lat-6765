@@ -1,0 +1,66 @@
+# @package _global_
+
+# to execute this experiment run:
+# python run.py experiment=example_simple.yaml
+
+defaults:
+  - override /trainer: sb3.yaml # choose trainer from 'configs/trainer/'
+  - override /model: cyclegan_model.yaml
+  - override /datamodule: cyclegan_datamodule.yaml
+  - override /callbacks: null
+  - override /logger: wandb.yaml
+
+# all parameters below will be merged with parameters from default configurations set above
+# this allows you to overwrite only specified parameters
+
+seed: 12345
+
+trainer:
+  max_epochs: 100
+  check_val_every_n_epoch: 10
+#  limit_train_batches: 0.025
+#  limit_val_batches: 0.025
+#  limit_test_batches: 0.025
+
+model:
+#  gan_mode: 'hinge'
+  lr_g: 2e-4
+  lr_d: 2e-4
+#  lambda_perception: 0.03
+  lambda_perception: 0
+
+callbacks:
+  model_checkpoint:
+    _target_: pytorch_lightning.callbacks.ModelCheckpoint
+    monitor: "val/FID"
+    save_top_k: 1
+    save_last: True
+    mode: "min"
+    dirpath: "checkpoints/"
+    filename: "{epoch:02d}"
+    save_on_train_epoch_end: False
+
+  early_stopping:
+    _target_: pytorch_lightning.callbacks.EarlyStopping
+    monitor: "val/FID"
+    patience: 100
+    mode: "min"
+    check_on_train_epoch_end: False
+
+  upload_ckpts_as_artifact:
+    _target_: src.callbacks.wandb_callbacks.UploadCheckpointsAsArtifact
+    ckpt_dir: "checkpoints/"
+    upload_best_only: False
+
+
+datamodule:
+  num_workers: 5
+  batch_size: 1
+  train_val_test_split: [ 0.8, 0.1, 0.1 ]
+  dataset_name: "unlid"
+  restricted: True
+
+logger:
+  wandb:
+    group: "cyclegan"
+    tags: [ "cyclegan", "unpaired", "unlid", "80/10/10" ]
